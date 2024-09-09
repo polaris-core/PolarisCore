@@ -29,7 +29,10 @@ public class PlayerEvents {
             event.setSpawningInstance(Levels.OVERWORLD);
             player.setRespawnPoint(new Pos(0, 42, 0));
             player.setSkin(PlayerSkin.fromUsername(player.getUsername()));
-            player.setGameMode(GameMode.CREATIVE);
+        });
+        
+        handler.addListener(PlayerSpawnEvent.class, event -> {
+            event.getPlayer().setGameMode(GameMode.SPECTATOR); 
         });
 
         handler.addListener(AsyncPlayerPreLoginEvent.class, event -> Audiences.all().sendMessage(Component.text(event.getUsername() + " joined the game").style(Style.style(NamedTextColor.YELLOW))));
